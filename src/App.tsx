@@ -24,15 +24,16 @@ function App() {
 
       <div className='content-wrapper'>
         <ProfileCard
-          name="Wizz"
-          tagline="Wizz's links"
-          location="WonderLand"
-          avatarUrl="/avatar.png"
+          name="𝕙𝕩𝕣𝕤𝕙.𝟞𝟡_"
+          tagline="links"
+          location="5 inches from a mental breakdown"
+          avatarUrl="/profilepic.gif"
           discordId="353953706384818177"
-          discordUrl='https://discord.com/channels/@me'
-          instagramUrl='https://www.instagram.com/?hl=en'
+          discordUrl='https://discord.com/users/353953706384818177'
+          instagramUrl='https://www.instagram.com/hxrsh.69_/'
           steamUrl='https://steamcommunity.com/id/90909090123/'
           linkedin='https://www.linkedin.com/in/harsh-hemraz-38317b2b1/'
+          discordavatar='avatar.png'
         />
         <MusicPlayer
           ref={playerRef}

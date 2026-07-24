@@ -11,6 +11,7 @@ interface ProfileCardProps {
     instagramUrl: string;
     steamUrl: string;
     linkedin: string;
+    discordavatar: string;
 }
 
 interface LanyardData {
@@ -24,7 +25,7 @@ interface LanyardData {
   spotify?: { song: string; artist: string };
 }
 
-function ProfileCard({ name, tagline, location, discordId, avatarUrl, discordUrl, linkedin, instagramUrl, steamUrl }: ProfileCardProps) {
+function ProfileCard({ name, tagline, location, discordId, avatarUrl, discordUrl, linkedin, instagramUrl, steamUrl, discordavatar }: ProfileCardProps) {
     const [presence, setPresence] = useState<LanyardData | null>(null);
 
     useEffect(() => {
@@ -54,10 +55,10 @@ function ProfileCard({ name, tagline, location, discordId, avatarUrl, discordUrl
     : "Loading...";
 
     return (
-    <div className='profilecard gap-5 bg-black/50 backdrop-blur-md rounded-2xl px-4 py-3 text-white mt-4'>
+    <div className='profilecard gap-5 bg-black/50 backdrop-blur-md rounded-2xl px-4 py-3 pb-5 text-white mt-4'>
 
         <div className='flex justify-center p-5'>
-        <img src={avatarUrl} alt='avatar' className='avatar h-20 w-25 rounded-full' />
+        <img src={avatarUrl} alt='avatar' className='avatar h-25 rounded-2xl' />
         </div>
 
         <div className='text-display flex justify-center items-center flex-col'>
@@ -81,13 +82,18 @@ function ProfileCard({ name, tagline, location, discordId, avatarUrl, discordUrl
             </a>
         </div>
 
-        <div className='text-display flex justify-center items-center flex-col'>
-            <p className='username'>
-                {presence?.discord_user.global_name || presence?.discord_user.username || 'Loading...'}
-            </p>
-            <p className='last-seen pb-5'>{statusText}</p>
-        </div>
+
+   <div className='flex items-center gap-3 bg-white/5 rounded-2xl px-4 py-3 mt-2 '>
+    <img src={discordavatar} alt='avatar' className='w-10 h-10 rounded-full object-cover' />
+    <div className='flex flex-col'>
+        <p className='username font-semibold text-sm'>
+            {presence?.discord_user.global_name || presence?.discord_user.username || 'Loading...'}
+        </p>
+        <p className='last-seen text-xs italic text-white/50'>{statusText}</p>
     </div>
+</div>
+</div>
+    
     );
 }
 

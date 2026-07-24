@@ -35,7 +35,7 @@ function DiscordPresence({ discordId }: { discordId: string }) {
 
   return (
     <div className="text-display flex justify-center items-center flex-col">
-      <p className="username">{data.discord_user.global_name || data.discord_user.username}</p>
+      <p className="username">Username: {data.discord_user.global_name || data.discord_user.username}</p>
       <p className="last-seen">{doingText}</p>
     </div>
   );
