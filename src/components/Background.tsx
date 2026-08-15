@@ -4,7 +4,7 @@ interface BackgroundProps {
 
 function Background({videoURL}: BackgroundProps) {
     return (
-        <div className="img-bg">
+        <div className="img-bg fixed top-0 left-0 w-screen h-screen">
         <video
             autoPlay
             loop
@@ -14,7 +14,7 @@ function Background({videoURL}: BackgroundProps) {
             poster="/profilepic.gif"
             webkit-playsinline="true"
             x5-playsinline="true"
-            className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+            className="w-full h-full object-cover"
         >
             <source src={videoURL} type="video/mp4" />
         </video>
