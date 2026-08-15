@@ -1,5 +1,5 @@
 .profile-card {
-    padding: 25rem;
+    padding: 2rem;  /* Change from 25rem to 2rem */
 }
 .logo :hover { 
     transform: scale(1.5);
