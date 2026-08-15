@@ -12,6 +12,7 @@ interface ProfileCardProps {
     steamUrl: string;
     linkedin: string;
     discordavatar: string;
+    gitHub: string;
 }
 
 interface LanyardData {
@@ -25,7 +26,7 @@ interface LanyardData {
   spotify?: { song: string; artist: string };
 }
 
-function ProfileCard({ name, tagline, location, discordId, avatarUrl, discordUrl, linkedin, instagramUrl, steamUrl, discordavatar }: ProfileCardProps) {
+function ProfileCard({ name, tagline, location, discordId, avatarUrl, discordUrl, linkedin, instagramUrl, steamUrl, discordavatar, gitHub }: ProfileCardProps) {
     const [presence, setPresence] = useState<LanyardData | null>(null);
 
     useEffect(() => {
@@ -79,6 +80,9 @@ function ProfileCard({ name, tagline, location, discordId, avatarUrl, discordUrl
             </a>
             <a href={linkedin} className='logo'>
             <img src="LinkedIn-logo.gif" className='badge-avatar mt-1.5 w-12 h-12' />
+            </a>
+            <a href={gitHub} className='logo'>
+                <img src="GitGif.gif" className='badge-avatar mt-1.5 w-12 h-12' />
             </a>
         </div>
 

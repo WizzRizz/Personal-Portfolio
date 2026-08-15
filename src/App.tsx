@@ -32,8 +32,9 @@ function App() {
           discordUrl='https://discord.com/users/353953706384818177'
           instagramUrl='https://www.instagram.com/hxrsh.69_/'
           steamUrl='https://steamcommunity.com/id/90909090123/'
-          linkedin='https://www.linkedin.com/in/harsh-hemraz-38317b2b1/'
+          linkedin='https://www.linkedin.com/in'
           discordavatar='avatar.png'
+          gitHub='https://github.com/WizzRizz'
         />
         <MusicPlayer
           ref={playerRef}
