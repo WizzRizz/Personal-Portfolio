@@ -69,7 +69,7 @@ const MusicPlayer = forwardRef<MusicPlayerHandle, musicPlayerProps>(
         const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
         return (
-            <div className="flex items-center gap-3 bg-black/50 backdrop-blur-md rounded-2xl px-4 py-3 w-[340px] text-white mt-4">
+           <div className="flex items-center gap-3 bg-black/50 backdrop-blur-md rounded-2xl px-4 py-3 w-[450px] text-white mt-4">
                 <audio ref={audioRef} src={songURL} loop />
                 <img src={coverURL} alt="cover" className="w-11 h-11 rounded-lg object-cover" />
 

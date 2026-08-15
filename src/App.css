@@ -69,6 +69,10 @@
     gap: 18px;
   }
 }
+.music-player-container:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
 
 #next-steps {
   display: flex;
