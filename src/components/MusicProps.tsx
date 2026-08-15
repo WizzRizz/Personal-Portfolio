@@ -59,6 +59,14 @@ const MusicPlayer = forwardRef<MusicPlayerHandle, musicPlayerProps>(
             };
         }, []);
 
+        const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+            if (audioRef.current) {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                audioRef.current.currentTime = percent * duration;
+            }
+        };
+
         const formatTime = (time: number): string => {
             if (isNaN(time)) return '0:00';
             const minutes = Math.floor(time / 60);
@@ -69,29 +77,39 @@ const MusicPlayer = forwardRef<MusicPlayerHandle, musicPlayerProps>(
         const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
         return (
-            <div className="flex items-center gap-3 bg-black/50 backdrop-blur-md rounded-2xl px-4 py-3 w-[400px] text-white mt-4">
-                <audio ref={audioRef} src={songURL} loop />
-                <img src={coverURL} alt="cover" className="w-11 h-11 rounded-lg object-cover" />
+   <div className="music-player-container flex items-center gap-4 bg-black/50 backdrop-blur-md rounded-2xl pl-5 pr-5 py-3 w-full max-w-[600px] text-white mt-4 mx-auto">
+    <audio ref={audioRef} src={songURL} loop />
+    <img src={coverURL} alt="cover" className="w-15 h-17  rounded-lg object-cover flex-shrink-0" />
 
-                <div className="flex-1">
-                    <span className="text-sm font-medium">{title}</span>
-                    <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs text-gray-400">{formatTime(currentTime)}</span>
-                        <div className="flex-1 h-[3px] bg-white/20 rounded-full overflow-hidden">
-                            <div className="h-full bg-sky-300" style={{ width: `${progressPercent}%` }} />
-                        </div>
-                        <span className="text-xs text-gray-400">{formatTime(duration)}</span>
-                    </div>
-                </div>
-
-                {isPlaying ? (
-                    <FaPause className="cursor-pointer text-lg" onClick={togglePlay} />
-                ) : (
-                    <FaPlay className="cursor-pointer text-lg" onClick={togglePlay} />
-                )}
+    <div className="flex-1">
+        <span className="text-sm font-medium">{title}</span>
+        <div className="flex items-center gap-2 mt-1">
+            <span className="text-xs text-gray-400">{formatTime(currentTime)}</span>
+            <div className="flex-1 h-[3px] bg-white/20 rounded-full overflow-hidden cursor-pointer" onClick={handleProgressClick}>
+                <div className="h-full bg-sky-300" style={{ width: `${progressPercent}%` }} />
             </div>
+            <span className="text-xs text-gray-400">{formatTime(duration)}</span>
+        </div>
+    </div>
+
+<div className="w-15 flex-shrink-0 flex items-center justify-center">
+    {isPlaying ? (
+        <FaPause
+            className="cursor-pointer text-lg"
+            onClick={togglePlay}
+        />
+    ) : (
+        <FaPlay
+            className="cursor-pointer text-lg"
+            onClick={togglePlay}
+        />
+    )}
+</div>
+</div>
         );
     }
 );
+
+MusicPlayer.displayName = 'MusicPlayer';
 
 export default MusicPlayer;

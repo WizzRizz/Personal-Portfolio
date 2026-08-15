@@ -19,3 +19,8 @@
     0 0 8px rgba(239, 68, 68, 0.8), /* Medium red glow */
     0 0 15px rgba(239, 68, 68, 0.4);/* Soft outer red dispersion */
 }
+
+.profile-card:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
