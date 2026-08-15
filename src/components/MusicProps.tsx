@@ -77,7 +77,7 @@ const MusicPlayer = forwardRef<MusicPlayerHandle, musicPlayerProps>(
                     <span className="text-sm font-medium">{title}</span>
                     <div className="flex items-center gap-2 mt-1">
                         <span className="text-xs text-gray-400">{formatTime(currentTime)}</span>
-                        <div className="flex-1 h-[3px] bg-white/20 rounded-full overflow-hidden">
+                        <div className="flex-1 h-3px bg-white/20 rounded-full overflow-hidden">
                             <div className="h-full bg-sky-300" style={{ width: `${progressPercent}%` }} />
                         </div>
                         <span className="text-xs text-gray-400">{formatTime(duration)}</span>
