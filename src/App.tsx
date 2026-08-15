@@ -16,7 +16,7 @@ function App() {
   }
 
   return (
-    <div className='app-background min-h-screen w-full flex items-center justify-center'>
+     <div className='app-background min-h-screen w-screen h-screen flex items-center justify-center overflow-hidden bg-black'>
 
       {!entered && <EnterGate onEnter={handleEnter} />}
 
