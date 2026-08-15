@@ -5,8 +5,12 @@
     transform: scale(1.5);
 }
 .profilecard {
-    background-image: url(/textbg.gif);
+    background-image: url("textbg.gif"); /* Removed the leading slash */
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;              /* Stretches image to fit the container */
+    min-height: 200px;                  /* Ensures the container has visible height */
+    width: 100%;                        /* Ensures the container has visible width */
 }
 .text-display {
  font-size: 1rem;

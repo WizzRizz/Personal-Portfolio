@@ -70,7 +70,7 @@ function ProfileCard({ name, tagline, location, discordId, avatarUrl, discordUrl
 
         <div className='flex justify-center flex-row'>
             <a href={discordUrl} className='logo'>
-            <img src="/DiscordLogo.gif" className='badge-avatar w-15 h-15' />
+            <img src="/DiscordLogo.gif" className="badge-avatar w-15 h-15" style={{ transform: 'translateY(-5px)' }}/>
             </a>
             <a href={instagramUrl} className='logo'>
             <img src="Insta-logo.gif" className='badge-avatar mt-1.5 w-12 h-12' />
@@ -86,15 +86,24 @@ function ProfileCard({ name, tagline, location, discordId, avatarUrl, discordUrl
             </a>
         </div>
 
+<div className='flex items-center gap-3 bg-white/5 rounded-2xl px-6 mt-2 h-15'>
+  <div className='flex items-center gap-3' style={{ transform: 'translateX(15px)' }}>
+    <img
+      src={discordavatar}
+      alt='avatar'
+      className='w-10 h-10 rounded-full object-cover'
+    />
 
-   <div className='flex items-center gap-3 bg-white/5 rounded-2xl px-4 py-3 mt-2 '>
-    <img src={discordavatar} alt='avatar' className='w-10 h-10 rounded-full object-cover' />
     <div className='flex flex-col'>
-        <p className='username font-semibold text-sm'>
-            {presence?.discord_user.global_name || presence?.discord_user.username || 'Loading...'}
-        </p>
-        <p className='last-seen text-xs italic text-white/50'>{statusText}</p>
+      <p className='username font-semibold text-sm'>
+        {presence?.discord_user.global_name || presence?.discord_user.username || 'Loading...'}
+      </p>
+
+      <p className='last-seen text-xs italic text-white/50'>
+        {statusText}
+      </p>
     </div>
+  </div>
 </div>
 </div>
     
