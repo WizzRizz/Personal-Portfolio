@@ -4,23 +4,46 @@ import Background from './components/Background'
 import EnterGate from './components/Entergate'
 import MusicPlayer from './components/MusicProps'
 import type { MusicPlayerHandle } from './components/MusicProps'
+
 import './App.css'
+
+// --- Add your options here ---
+const backgrounds = [
+  '/Blink-eye-background.mp4',
+  '/yourname.mp4',
+  '/fate.mp4',
+]
+
+const songs = [
+  { title: 'Augxst - See Me', coverURL: '/AudioBeat.gif', songURL: '/seeme.mp3' },
+  { title: "LOVIXX and STOSLIV - Don't tell your dreams", coverURL: '/AudioBeat.gif', songURL: '/donttellyourdreams.mp3' },
+  { title: "IRIAS and STOSLIV - Prada", coverURL: '/AudioBeat.gif', songURL: '/prada.mp3' },
+  { title: "Farazi - Dobro Vecer (Remastered)", coverURL: '/AudioBeat.gif', songURL: '/dobrovercer.mp3' },
+]
+
+function pickRandom<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
 
 function App() {
   const [entered, setEntered] = useState(false)
   const playerRef = useRef<MusicPlayerHandle>(null)
 
+  // Lazy initializers => runs once per mount (i.e. once per refresh)
+  const [background] = useState(() => pickRandom(backgrounds))
+  const [song] = useState(() => pickRandom(songs))
+
   const handleEnter = () => {
     playerRef.current?.play()
-    setTimeout(() => setEntered(true), 700) // matches EnterGate's fade-out duration
+    setTimeout(() => setEntered(true), 700)
   }
 
   return (
-     <div className='app-background min-h-screen w-screen h-screen flex items-center justify-center overflow-hidden bg-black'>
+    <div className='app-background min-h-screen w-screen h-screen flex items-center justify-center overflow-hidden bg-black'>
 
       {!entered && <EnterGate onEnter={handleEnter} />}
 
-      <Background videoURL='/Blink-eye-background.mp4' />
+      <Background videoURL={background} />
 
       <div className='content-wrapper'>
         <ProfileCard
@@ -38,9 +61,9 @@ function App() {
         />
         <MusicPlayer
           ref={playerRef}
-          title='Augxst - See Me'
-          coverURL='/AudioBeat.gif'
-          songURL='/seeme.mp3'
+          title={song.title}
+          coverURL={song.coverURL}
+          songURL={song.songURL}
           volume={1}
         />
       </div>
