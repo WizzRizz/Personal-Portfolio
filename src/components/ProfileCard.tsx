@@ -1,5 +1,6 @@
 import "./ProfileCard.css";
 import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
 
 interface ProfileCardProps {
   name: string;
@@ -51,6 +52,8 @@ function ProfileCard({
   const [messageOpen, setMessageOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPresence = async () => {
@@ -95,10 +98,23 @@ function ProfileCard({
               ? "🟢 Currently Online"
               : "Loading...";
 
-  const handleSendMessage = () => {
-    if (!message.trim()) return;
+  const handleSendMessage = async () => {
+    if (!message.trim() || sending) return;
 
-    console.log("Anonymous message:", message);
+    setSending(true);
+    setError(null);
+
+    const { error: insertError } = await supabase
+      .from("messages")
+      .insert([{ content: message.trim() }]);
+
+    setSending(false);
+
+    if (insertError) {
+      console.error("Failed to send message:", insertError);
+      setError("Something went wrong. Try again.");
+      return;
+    }
 
     setMessage("");
     setSent(true);
@@ -110,43 +126,32 @@ function ProfileCard({
 
   return (
     <div className="w-full">
-
       {/* ================= PROFILE CARD ================= */}
 
       <div className="profilecard bg-black/50 backdrop-blur-md rounded-2xl text-white">
-
-        {/* Avatar - FIXED: removed pt-5 pb-3, kept only pt-2 pb-1 */}
+        {/* Avatar */}
 
         <div className="flex justify-center pt-2 pb-1">
           <img
             src={avatarUrl}
-            alt="avatar"
+            alt={`${name} avatar`}
             className="avatar h-25 rounded-2xl"
           />
         </div>
 
-        {/* Name / Info - FIXED: reduced padding */}
+        {/* Name / Info */}
 
         <div className="text-display flex justify-center items-center flex-col py-1">
+          <h1 className="name text-2xl">{name}</h1>
 
-          <h1 className="name text-2xl">
-            {name}
-          </h1>
+          <p className="tagline">{tagline}</p>
 
-          <p className="tagline">
-            {tagline}
-          </p>
-
-          <p className="location text-xs pt-1.5">
-            📍{location}
-          </p>
-
+          <p className="location text-xs pt-1.5">📍{location}</p>
         </div>
 
-        {/* Social Links - FIXED: reduced padding */}
+        {/* Social Links */}
 
         <div className="flex justify-center flex-row gap-1 py-1">
-
           <a
             href={discordUrl}
             className="logo"
@@ -212,16 +217,15 @@ function ProfileCard({
               className="badge-avatar mt-1.5 w-12 h-12"
             />
           </a>
-
         </div>
 
-        {/* Discord Presence - FIXED: reduced margin-top */}
+        {/* Discord Presence */}
 
         <div className="discord-presence-wrapper">
           <div className="discord-presence">
             <img
               src={discordavatar}
-              alt="avatar"
+              alt="Discord avatar"
               className="discord-avatar"
             />
 
@@ -232,17 +236,14 @@ function ProfileCard({
                   "Loading..."}
               </p>
 
-              <p className="discord-status">
-                {statusText}
-              </p>
+              <p className="discord-status">{statusText}</p>
             </div>
           </div>
         </div>
 
-        {/* Anonymous Message Hint - FIXED: reduced margin-top */}
+        {/* Anonymous Message Hint */}
 
         <div className="mt-4 flex justify-center">
-
           <button
             type="button"
             onClick={() => setMessageOpen((prev) => !prev)}
@@ -252,11 +253,8 @@ function ProfileCard({
               ? "Close anonymous message"
               : "Click to send an anonymous message"}
           </button>
-
         </div>
-
       </div>
-
 
       {/* ================= ANONYMOUS MESSAGE CARD ================= */}
 
@@ -265,29 +263,20 @@ function ProfileCard({
           messageOpen ? "anonymous-container-open" : ""
         }`}
       >
-
         <div className="anonymous-card">
-
           {/* Header */}
 
           <div className="anonymous-header">
-
             <div>
-              <p className="anonymous-small-title">
-                ANONYMOUS MESSAGE
-              </p>
+              <p className="anonymous-small-title">ANONYMOUS MESSAGE</p>
 
-              <h2 className="anonymous-title">
-                Leave a message
-              </h2>
+              <h2 className="anonymous-title">Leave a message</h2>
 
               <p className="anonymous-description">
                 Send something anonymously.
               </p>
             </div>
-
           </div>
-
 
           {/* Message */}
 
@@ -299,11 +288,9 @@ function ProfileCard({
             className="anonymous-textarea"
           />
 
-
           {/* Bottom */}
 
           <div className="anonymous-bottom">
-
             <span className="anonymous-counter">
               {message.length}/500
             </span>
@@ -311,14 +298,16 @@ function ProfileCard({
             <button
               type="button"
               onClick={handleSendMessage}
-              disabled={!message.trim()}
+              disabled={!message.trim() || sending}
               className="anonymous-send"
             >
-              Send
+              {sending ? "Sending..." : "Send"}
             </button>
-
           </div>
 
+          {/* Error */}
+
+          {error && <p className="anonymous-error">{error}</p>}
 
           {/* Success */}
 
@@ -327,11 +316,8 @@ function ProfileCard({
               ✓ Message sent anonymously
             </p>
           )}
-
         </div>
-
       </div>
-
     </div>
   );
 }
