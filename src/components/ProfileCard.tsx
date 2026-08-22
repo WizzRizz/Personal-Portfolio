@@ -113,11 +113,11 @@ function ProfileCard({
 
       {/* ================= PROFILE CARD ================= */}
 
-      <div className="profilecard gap-5 bg-black/50 backdrop-blur-md rounded-2xl px-4 py-3 pb-5 text-white mt-4">
+      <div className="profilecard bg-black/50 backdrop-blur-md rounded-2xl text-white">
 
-        {/* Avatar */}
+        {/* Avatar - FIXED: removed pt-5 pb-3, kept only pt-2 pb-1 */}
 
-        <div className="flex justify-center p-5">
+        <div className="flex justify-center pt-2 pb-1">
           <img
             src={avatarUrl}
             alt="avatar"
@@ -125,9 +125,9 @@ function ProfileCard({
           />
         </div>
 
-        {/* Name / Info */}
+        {/* Name / Info - FIXED: reduced padding */}
 
-        <div className="text-display flex justify-center items-center flex-col">
+        <div className="text-display flex justify-center items-center flex-col py-1">
 
           <h1 className="name text-2xl">
             {name}
@@ -137,15 +137,15 @@ function ProfileCard({
             {tagline}
           </p>
 
-          <p className="location text-xs pt-5">
+          <p className="location text-xs pt-1.5">
             📍{location}
           </p>
 
         </div>
 
-        {/* Social Links */}
+        {/* Social Links - FIXED: reduced padding */}
 
-        <div className="flex justify-center flex-row">
+        <div className="flex justify-center flex-row gap-1 py-1">
 
           <a
             href={discordUrl}
@@ -215,42 +215,33 @@ function ProfileCard({
 
         </div>
 
-        {/* Discord Presence */}
+        {/* Discord Presence - FIXED: reduced margin-top */}
 
-        <div className="flex items-center gap-3 bg-white/5 rounded-2xl px-6 mt-2 h-15">
-
-          <div
-            className="flex items-center gap-3"
-            style={{ transform: "translateX(15px)" }}
-          >
-
+        <div className="discord-presence-wrapper">
+          <div className="discord-presence">
             <img
               src={discordavatar}
               alt="avatar"
-              className="w-10 h-10 rounded-full object-cover"
+              className="discord-avatar"
             />
 
-            <div className="flex flex-col">
-
-              <p className="username font-semibold text-sm">
+            <div className="discord-info">
+              <p className="discord-username">
                 {presence?.discord_user.global_name ||
                   presence?.discord_user.username ||
                   "Loading..."}
               </p>
 
-              <p className="last-seen text-xs italic text-white/50">
+              <p className="discord-status">
                 {statusText}
               </p>
-
             </div>
-
           </div>
-
         </div>
 
-        {/* Anonymous Message Hint */}
+        {/* Anonymous Message Hint - FIXED: reduced margin-top */}
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
 
           <button
             type="button"

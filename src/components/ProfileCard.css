@@ -1,28 +1,21 @@
-.profile-card {
-  padding: 2rem;
-}
-
-
 /* =========================
    PROFILE CARD
 ========================= */
 
 .profilecard {
   background-image: url("textbg.gif");
-
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
   min-height: 200px;
   width: 100%;
-
+  max-width: 600px;
+  margin: 0 auto;
+  
   border: 1px solid rgba(255, 255, 255, 0.05);
-
   box-shadow:
     0 10px 35px rgba(0, 0, 0, 0.35),
     inset 0 0 25px rgba(0, 0, 0, 0.15);
-
   transition:
     transform 0.3s ease,
     border-color 0.3s ease,
@@ -30,8 +23,8 @@
 }
 
 .profilecard:hover {
+  transform: scale(1.02);
   border-color: rgba(239, 68, 68, 0.12);
-
   box-shadow:
     0 15px 45px rgba(0, 0, 0, 0.45),
     0 0 25px rgba(239, 68, 68, 0.04);
@@ -45,12 +38,9 @@
 .text-display {
   font-size: 1rem;
   font-weight: 700;
-
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
   color: #ffffff;
-
   text-shadow:
     0 0 3px rgba(239, 68, 68, 1),
     0 0 8px rgba(239, 68, 68, 0.8),
@@ -66,7 +56,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   transition:
     transform 0.25s ease,
     filter 0.25s ease;
@@ -74,9 +63,70 @@
 
 .logo:hover {
   transform: scale(1.12);
+  filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.25));
+}
 
-  filter:
-    drop-shadow(0 0 5px rgba(239, 68, 68, 0.25));
+
+/* =========================
+   DISCORD PRESENCE
+========================= */
+
+.discord-presence-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.25rem !important;
+  padding: 0;
+  width: 100%;
+}
+
+.discord-presence {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 0.4rem 0.75rem;
+  width: 100%;
+  transition: background 0.3s ease;
+  margin: 0;
+}
+
+.discord-presence:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.discord-avatar {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 9999px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.discord-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.discord-username {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discord-status {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -87,16 +137,11 @@
 .anonymous-hint {
   border: none;
   background: transparent;
-
   color: rgba(255, 255, 255, 0.3);
-
   font-size: 10px;
   font-family: inherit;
-
   cursor: pointer;
-
   padding: 4px 8px;
-
   transition:
     color 0.3s ease,
     text-shadow 0.3s ease,
@@ -105,7 +150,6 @@
 
 .anonymous-hint:hover {
   color: rgba(239, 68, 68, 0.8);
-
   text-shadow:
     0 0 8px rgba(239, 68, 68, 0.45),
     0 0 15px rgba(239, 68, 68, 0.2);
@@ -122,13 +166,9 @@
 
 .anonymous-container {
   display: grid;
-
   grid-template-rows: 0fr;
-
   opacity: 0;
-
   margin-top: 0;
-
   transition:
     grid-template-rows 0.45s ease,
     opacity 0.35s ease,
@@ -137,57 +177,38 @@
 
 .anonymous-container-open {
   grid-template-rows: 1fr;
-
   opacity: 1;
-
   margin-top: 10px;
 }
 
 .anonymous-container > .anonymous-card {
   min-height: 0;
-
   overflow: hidden;
 }
 
 
 /* =========================
-   ANONYMOUS CARD
+   ANONYMOUS CARD - REDUCED SPACING
 ========================= */
 
 .anonymous-card {
-  position: relative;
-
-  padding: 20px;
-
+  position: relative; 
   border-radius: 16px;
-
   color: white;
-
-  /*
-    Same aesthetic as the profile card.
-    Using textbg.gif again keeps both cards
-    visually connected.
-  */
-
   background-image:
     linear-gradient(
       rgba(0, 0, 0, 0.35),
       rgba(0, 0, 0, 0.55)
     ),
     url("textbg.gif");
-
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
   backdrop-filter: blur(15px);
-
   border: 1px solid rgba(255, 255, 255, 0.05);
-
   box-shadow:
     0 10px 35px rgba(0, 0, 0, 0.35),
     inset 0 0 25px rgba(0, 0, 0, 0.2);
-
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
@@ -198,15 +219,11 @@
 
 .anonymous-card::before {
   content: "";
-
   position: absolute;
-
   top: 0;
   left: 15%;
   right: 15%;
-
   height: 1px;
-
   background: linear-gradient(
     90deg,
     transparent,
@@ -217,72 +234,58 @@
 
 
 /* =========================
-   HEADER
+   HEADER - REDUCED SPACING
 ========================= */
 
 .anonymous-header {
-  margin-bottom: 14px;
+  margin-bottom: 8px !important; /* REDUCED from 14px */
 }
 
 .anonymous-small-title {
   color: rgba(239, 68, 68, 0.65);
-
   font-size: 9px;
-
   font-weight: 700;
-
   letter-spacing: 0.18em;
+  padding:0.2rem 0.5rem;
+
 }
 
 .anonymous-title {
-  margin-top: 3px;
-
-  font-size: 17px;
-
+  margin-top: 2px !important; /* REDUCED from 3px */
+  font-size: 16px !important; /* SLIGHTLY SMALLER */
   font-weight: 600;
-
   color: rgba(255, 255, 255, 0.9);
-
   text-shadow:
     0 0 5px rgba(239, 68, 68, 0.2);
+    padding:0rem 0.5rem;
+   
 }
 
 .anonymous-description {
-  margin-top: 3px;
-
-  font-size: 10px;
-
+  margin-top: 1px !important; /* REDUCED from 3px */
+  font-size: 9px !important; /* SLIGHTLY SMALLER */
   color: rgba(255, 255, 255, 0.3);
+   padding:0rem 0.5rem;
+   
 }
 
 
 /* =========================
-   TEXTAREA
+   TEXTAREA - REDUCED SPACING
 ========================= */
 
 .anonymous-textarea {
   width: 100%;
-
-  min-height: 110px;
-
+  min-height: 70px !important; /* REDUCED from 110px */
   resize: none;
-
-  padding: 13px;
-
+   padding:0rem 0.5rem;/* REDUCED from 13px */
   border-radius: 12px;
-
   background: rgba(0, 0, 0, 0.3);
-
   border: 1px solid rgba(255, 255, 255, 0.07);
-
   color: rgba(255, 255, 255, 0.9);
-
   font-family: inherit;
-
-  font-size: 12px;
-
+  font-size: 11px !important; /* SLIGHTLY SMALLER */
   outline: none;
-
   transition:
     background 0.25s ease,
     border-color 0.25s ease,
@@ -299,9 +302,7 @@
 
 .anonymous-textarea:focus {
   background: rgba(0, 0, 0, 0.4);
-
   border-color: rgba(239, 68, 68, 0.3);
-
   box-shadow:
     0 0 0 2px rgba(239, 68, 68, 0.04),
     0 0 15px rgba(239, 68, 68, 0.05);
@@ -309,22 +310,19 @@
 
 
 /* =========================
-   BOTTOM
+   BOTTOM - REDUCED SPACING
 ========================= */
 
 .anonymous-bottom {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
-  margin-top: 10px;
+  margin-top: 6px !important; /* REDUCED from 10px */
+   padding:0.5rem;
 }
 
 .anonymous-counter {
-  font-size: 9px;
-
+  font-size: 8px !important; /* SLIGHTLY SMALLER */
   color: rgba(255, 255, 255, 0.25);
 }
 
@@ -334,22 +332,14 @@
 ========================= */
 
 .anonymous-send {
-  padding: 7px 16px;
-
+  padding: 5px 14px !important; /* REDUCED from 7px 16px */
   border-radius: 9px;
-
   background: rgba(239, 68, 68, 0.1);
-
   border: 1px solid rgba(239, 68, 68, 0.2);
-
   color: rgba(255, 255, 255, 0.8);
-
   font-family: inherit;
-
-  font-size: 10px;
-
+  font-size: 9px !important; /* SLIGHTLY SMALLER */
   cursor: pointer;
-
   transition:
     background 0.25s ease,
     border-color 0.25s ease,
@@ -359,12 +349,9 @@
 
 .anonymous-send:hover:not(:disabled) {
   background: rgba(239, 68, 68, 0.18);
-
   border-color: rgba(239, 68, 68, 0.35);
-
   box-shadow:
     0 0 15px rgba(239, 68, 68, 0.1);
-
   transform: translateY(-1px);
 }
 
@@ -374,7 +361,6 @@
 
 .anonymous-send:disabled {
   opacity: 0.25;
-
   cursor: not-allowed;
 }
 
@@ -384,14 +370,10 @@
 ========================= */
 
 .anonymous-success {
-  margin-top: 10px;
-
+  margin-top: 6px !important; /* REDUCED from 10px */
   text-align: center;
-
-  font-size: 10px;
-
+  font-size: 9px !important; /* SLIGHTLY SMALLER */
   color: rgba(74, 222, 128, 0.7);
-
   animation: anonymousSuccess 0.3s ease;
 }
 
@@ -400,9 +382,8 @@
     opacity: 0;
     transform: translateY(-3px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
-} 
+}
