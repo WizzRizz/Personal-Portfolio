@@ -11,6 +11,7 @@ const backgrounds = [
   "/Blink-eye-background.mp4",
   "/yourname.mp4",
   "/fate.mp4",
+  "/minato.mp4",
 ];
 
 const songs = [
@@ -33,6 +34,11 @@ const songs = [
     title: "Farazi - Dobro Vecer (Remastered)",
     coverURL: "/AudioBeat.gif",
     songURL: "/dobrovercer.mp3",
+  },
+  {
+    title: "愛探眼影 ex;curse velvet ",
+    coverURL: "/AudioBeat.gif",
+    songURL: "/excurse.mp3",
   },
 ];
 

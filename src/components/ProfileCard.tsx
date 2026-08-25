@@ -151,7 +151,7 @@ function ProfileCard({
 
         {/* Social Links */}
 
-        <div className="flex justify-center flex-row gap-1 py-1">
+        <div className="flex justify-center flex-row gap-1 pt-2">
           <a
             href={discordUrl}
             className="logo"
@@ -161,8 +161,8 @@ function ProfileCard({
             <img
               src="/DiscordLogo.gif"
               alt="Discord"
-              className="badge-avatar w-15 h-15"
-              style={{ transform: "translateY(-5px)" }}
+              className="badge-avatar w-15 h-15 mt-10 hover:scale-120"
+              
             />
           </a>
 
